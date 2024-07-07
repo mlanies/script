@@ -1,0 +1,30 @@
+import requests
+import datetime
+
+# Telegram Bot API токен и chat_id
+TELEGRAM_BOT_TOKEN = 'BOT_API'
+CHAT_ID = 'your_chat_id'
+
+def send_telegram_message(message):
+    url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
+    payload = {
+        'chat_id': -1002019559033,
+        'text': message
+    }
+    response = requests.post(url, data=payload)
+    return response
+
+def create_daily_report():
+    today = datetime.date.today()
+    # Пример отчета
+    report = f»Сервер: portal.expressm-test.ru. Ежедневный отчет за {today.strftime('%Y-%m-%d')}\n\nВсе системы работают нормально."
+    return report
+
+if __name__ == "__main__":
+    report = create_daily_report()
+    response = send_telegram_message(report)
+    if response.status_code == 200:
+        print("Отчет отправлен успешно.")
+    else:
+        print(f"Ошибка при отправке отчета: {response.status_code}")
+
