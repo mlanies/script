@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Обновление списка пакетов и системных компонентов
+sudo apt update && sudo apt upgrade -y
+
+# Автоматическая очистка ненужных пакетов
+sudo apt autoremove -y
+sudo apt autoclean
+
+# Очистка кэша
+sudo rm -rf /var/cache/apt/archives/*
+
+echo "Система обновлена и очищена."
